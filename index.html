@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تطبيق المحامين</title>
+  <style>
+    body { font-family: 'Arial'; direction: rtl; background-color: #f0f2f5; margin: 0; }
+    header { background-color: #2e86c1; color: white; padding: 10px 20px; text-align: center; }
+    nav { background-color: #d5d8dc; display: flex; justify-content: space-around; padding: 10px; }
+    nav a { text-decoration: none; color: #154360; font-weight: bold; }
+    section { padding: 20px; }
+    .card { background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 15px; margin-bottom: 20px; }
+    img { width: 100px; height: 100px; border-radius: 50%; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    .tab { display: none; }
+    .tab.active { display: block; }
+    footer { text-align: center; padding: 10px; background: #2e86c1; color: white; }
+    button { background-color: #2e86c1; color: white; padding: 10px; border: none; border-radius: 5px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>تطبيق المحامين اليمني</h1>
+  </header>
+  <nav>
+    <a href="#login" onclick="openTab('login')">تسجيل الدخول</a>
+    <a href="#lawyers" onclick="openTab('lawyers')">بطاقات المحامين</a>
+    <a href="#laws" onclick="openTab('laws')">القوانين اليمنية</a>
+    <a href="#clients" onclick="openTab('clients')">الموكلين</a>
+    <a href="#fees" onclick="openTab('fees')">تكاليف القضايا</a>
+    <a href="#reminders" onclick="openTab('reminders')">تنبيه الجلسات</a>
+  </nav>  <section id="login" class="tab active">
+    <div class="card">
+      <h2>تسجيل الدخول للمحامي</h2>
+      <label>الاسم:</label><input type="text">
+      <label>رقم القيد في النقابة:</label><input type="text">
+      <label>رقم الجوال:</label><input type="text">
+      <label>المنطقة:</label><input type="text">
+      <label>المدينة:</label><input type="text">
+    </div>
+  </section>  <section id="lawyers" class="tab">
+    <div class="card">
+      <h2>بطاقات المحامين</h2>
+      <img src="https://via.placeholder.com/100" alt="صورة المحامي">
+      <p>الاسم: المحامي أحمد علي</p>
+      <p>المدينة: صنعاء</p>
+      <p>المنطقة: التحرير</p>
+      <p>رقم الجوال: 777777777</p>
+    </div>
+  </section>  <section id="laws" class="tab">
+    <div class="card">
+      <h2>القوانين اليمنية</h2>
+      <ul>
+        <li>قانون العقوبات اليمني</li>
+        <li>قانون المرافعات والتنفيذ المدني</li>
+        <li>قانون الإثبات</li>
+        <li>قانون الأسرة والأحوال الشخصية</li>
+        <li>قانون الأراضي والعقارات</li>
+        <li>قانون الشركات التجارية</li>
+      </ul>
+    </div>
+  </section>  <section id="clients" class="tab">
+    <div class="card">
+      <h2>الموكلين والقضايا</h2>
+      <label>اسم الموكل:</label><input type="text">
+      <label>نوع القضية:</label><input type="text">
+      <label>الحكم:</label><input type="text">
+      <label>مكان المحكمة:</label><input type="text">
+      <label>موعد الجلسة:</label><input type="datetime-local">
+    </div>
+  </section>  <section id="fees" class="tab">
+    <div class="card">
+      <h2>تكاليف القضايا</h2>
+      <label>اسم الموكل:</label><input type="text">
+      <label>نوع القضية:</label><input type="text">
+      <label>الأتعاب الكاملة:</label><input type="number">
+      <label>الأتعاب المدفوعة:</label><input type="number">
+      <label>المتبقي:</label><input type="number">
+    </div>
+  </section>  <section id="reminders" class="tab">
+    <div class="card">
+      <h2>تنبيه الجلسات</h2>
+      <label>موعد الجلسة:</label>
+      <input type="datetime-local" id="reminderTime">
+      <button onclick="setReminder()">تفعيل التذكير</button>
+      <p id="reminderMsg"></p>
+    </div>
+  </section>  <footer>
+    &copy; 2025 تطبيق المحامين اليمني
+  </footer>  <script>
+    function openTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function setReminder() {
+      const time = new Date(document.getElementById('reminderTime').value);
+      const now = new Date();
+      const delay = time - now;
+      if (delay > 0) {
+        setTimeout(() => {
+          document.getElementById('reminderMsg').innerText = '🔔 تنبيه: لديك جلسة الآن!';
+          alert('🔔 تنبيه: لديك جلسة الآن!');
+        }, delay);
+        document.getElementById('reminderMsg').innerText = '✅ تم ضبط التذكير.';
+      } else {
+        document.getElementById('reminderMsg').innerText = '❌ التاريخ غير صحيح.';
+      }
+    }
+  </script></body>
+</html>
